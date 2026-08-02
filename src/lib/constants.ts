@@ -24,7 +24,7 @@ export const SITE_KEYWORDS = [
 ];
 export const CONTACT_EMAIL = "hello@gamepk.net.pk";
 export const DOWNLOAD_URL =
-  "http://vip888.32gamespk.com/?referralCode=jhc4960";
+  "https://vip888.32gamespk.com/?referralCode=jhc4960";
 
 export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/share/1F2iuqsGAW/?mibextid=wwXIfr",

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/content/ContentRenderer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Terms of Service",
@@ -9,9 +12,21 @@ export const metadata: Metadata = createMetadata({
   path: "/terms",
 });
 
+const breadcrumbs = [
+  { name: "Home", path: "/" },
+  { name: "Terms of Service", path: "/terms" },
+];
+
 export default function TermsPage() {
   return (
     <Container as="article" className="py-16">
+      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Terms of Service" },
+        ]}
+      />
       <h1 className="text-4xl font-bold text-white">Terms of Service</h1>
       <p className="mt-4 text-zinc-500">Last updated: July 31, 2026</p>
 

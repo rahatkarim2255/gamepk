@@ -1,6 +1,6 @@
 # GamePK — gamepk.net.pk
 
-Pakistan's premier gaming platform built with Next.js. SEO-optimized website targeting the **gamepk** keyword with game guides, esports news, hardware guides, and community content for Pakistani gamers.
+Pakistan's gaming platform built with Next.js. SEO-optimized site for GamePK download, JazzCash/Easypaisa guides, and JILI game blogs.
 
 ## Tech Stack
 
@@ -22,16 +22,19 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```
 src/
-├── app/                    # Next.js App Router pages
+├── app/                    # App Router pages + sitemap/robots/manifest/OG
 │   ├── about/
+│   ├── blogs/[slug]/
 │   ├── contact/
-│   ├── games/[slug]/
-│   ├── guides/[slug]/
-│   ├── news/[slug]/
+│   ├── deposit/
+│   ├── download/
+│   ├── pc/
 │   ├── privacy/
 │   ├── terms/
+│   ├── withdraw/
 │   ├── layout.tsx
 │   ├── page.tsx
+│   ├── opengraph-image.tsx
 │   ├── sitemap.ts
 │   ├── robots.ts
 │   └── manifest.ts
@@ -39,33 +42,30 @@ src/
 │   ├── content/            # Content renderer, breadcrumbs
 │   ├── layout/             # Header, Footer
 │   ├── sections/           # Homepage & listing sections
-│   ├── seo/                # JSON-LD structured data
+│   ├── seo/                # JSON-LD + FAQ UI
 │   └── ui/                 # Reusable UI components
-├── content/                # Game, guide, and news data
-├── lib/                    # SEO, metadata, constants
-└── types/                  # TypeScript interfaces
-
-public/
-└── images/                 # Add your images here (see README)
+├── content/                # Blog post data
+├── lib/                    # SEO, metadata, FAQs, constants
+└── types/
 ```
 
 ## SEO Features
 
-- Unique meta titles & descriptions per page
-- Open Graph & Twitter Card tags
-- JSON-LD structured data (Organization, WebSite, Article, FAQ, Breadcrumbs)
-- Auto-generated `sitemap.xml` and `robots.txt`
-- Semantic HTML with proper heading hierarchy
-- Canonical URLs for all pages
-- `lang="en-PK"` locale targeting
-
-## Adding Images
-
-Place images in `public/images/` following the guide in `public/images/README.md`. Replace `ImagePlaceholder` components with Next.js `Image` once assets are ready.
+- Unique meta titles, descriptions, keywords per page
+- Canonical URLs + `en-PK` / `x-default` hreflang
+- Open Graph & Twitter Card tags + dynamic OG image
+- JSON-LD: Organization, WebSite, WebPage, Article, FAQ, HowTo, SoftwareApplication, BreadcrumbList, ContactPage
+- Auto `sitemap.xml` and `robots.txt`
+- Semantic HTML, H1 hierarchy, breadcrumbs, internal links
+- Blog search aligned with WebSite SearchAction
+- Image alts, `next/image`, compression, security headers
+- 404 set to `noindex`
 
 ## Deploy
 
-Deploy to Vercel, Netlify, or any Node.js host. Set your domain to **gamepk.net.pk** and ensure `SITE_URL` in `src/lib/constants.ts` matches your production URL.
+Deploy to Vercel or any Node host. Point DNS to **gamepk.net.pk** and keep `SITE_URL` in `src/lib/constants.ts` in sync.
+
+Submit `https://gamepk.net.pk/sitemap.xml` in [Google Search Console](https://search.google.com/search-console) after go-live.
 
 ```bash
 npm run build

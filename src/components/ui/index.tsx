@@ -91,18 +91,25 @@ interface SectionHeadingProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
+  as?: "h1" | "h2" | "h3";
+  id?: string;
 }
 
 export function SectionHeading({
   title,
   subtitle,
   centered = false,
+  as: Tag = "h2",
+  id,
 }: SectionHeadingProps) {
   return (
     <div className={centered ? "text-center" : ""}>
-      <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <Tag
+        id={id}
+        className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+      >
         {title}
-      </h2>
+      </Tag>
       {subtitle && (
         <p className="mt-3 max-w-2xl text-lg text-zinc-400 sm:text-xl">
           {subtitle}
@@ -158,10 +165,18 @@ interface CardProps {
   children: ReactNode;
   href?: string;
   className?: string;
+  padded?: boolean;
 }
 
-export function Card({ children, href, className = "" }: CardProps) {
-  const cardClasses = `group rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all duration-200 hover:border-red-600/30 hover:bg-zinc-900 ${className}`;
+export function Card({
+  children,
+  href,
+  className = "",
+  padded = true,
+}: CardProps) {
+  const cardClasses = `group rounded-xl border border-zinc-800 bg-zinc-900/50 transition-all duration-200 hover:border-red-600/30 hover:bg-zinc-900 ${
+    padded ? "p-6" : ""
+  } ${className}`;
 
   if (href) {
     return (

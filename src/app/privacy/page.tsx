@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/content/ContentRenderer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Privacy Policy",
@@ -9,9 +12,21 @@ export const metadata: Metadata = createMetadata({
   path: "/privacy",
 });
 
+const breadcrumbs = [
+  { name: "Home", path: "/" },
+  { name: "Privacy Policy", path: "/privacy" },
+];
+
 export default function PrivacyPage() {
   return (
     <Container as="article" className="py-16">
+      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Privacy Policy" },
+        ]}
+      />
       <h1 className="text-4xl font-bold text-white">Privacy Policy</h1>
       <p className="mt-4 text-zinc-500">Last updated: July 31, 2026</p>
 

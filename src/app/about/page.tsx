@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/content/ContentRenderer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink, Container, ImagePlaceholder } from "@/components/ui";
 import { AnimateIn } from "@/components/ui/AnimateIn";
-import { createMetadata } from "@/lib/metadata";
 import { DOWNLOAD_URL } from "@/lib/constants";
+import { createMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "About GamePK",
@@ -12,9 +15,31 @@ export const metadata: Metadata = createMetadata({
   keywords: ["about GamePK", "GamePK Pakistan", "GamePK app", "gamepk.net.pk"],
 });
 
+const breadcrumbs = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+];
+
 export default function AboutPage() {
   return (
     <Container as="article" className="py-16">
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(breadcrumbs),
+          webPageJsonLd({
+            title: "About GamePK",
+            description:
+              "About GamePK — Pakistan gaming app for JILI slots, fishing games, and local wallet payments.",
+            path: "/about",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "About" },
+        ]}
+      />
       <AnimateIn>
         <header className="max-w-3xl">
           <h1 className="text-4xl font-bold text-white sm:text-5xl">

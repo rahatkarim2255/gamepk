@@ -15,6 +15,8 @@ type PageMetadataOptions = {
   publishedTime?: string;
   modifiedTime?: string;
   imageAlt?: string;
+  image?: string;
+  noIndex?: boolean;
 };
 
 export function createMetadata({
@@ -26,12 +28,17 @@ export function createMetadata({
   publishedTime,
   modifiedTime,
   imageAlt = "GamePK - Pakistan Gaming Platform",
+  image = "/opengraph-image",
+  noIndex = false,
 }: PageMetadataOptions): Metadata {
-  const url = `${SITE_URL}${path}`;
+  const normalizedPath = path === "" ? "/" : path;
+  const url = `${SITE_URL}${normalizedPath === "/" ? "/" : normalizedPath}`;
   const fullTitle =
-    path === "" || path === "/"
+    normalizedPath === "/"
       ? `GamePK Download Latest Version For Android 2026`
       : `${title} | ${SITE_NAME}`;
+
+  const imageUrl = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
   return {
     title: fullTitle,
@@ -40,9 +47,20 @@ export function createMetadata({
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,
+    category: "gaming",
+    applicationName: SITE_NAME,
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical: url,
+      languages: {
+        "en-PK": url,
+        "x-default": url,
+      },
+    },
+    icons: {
+      icon: [{ url: "/favicon.ico" }, { url: "/gamepk.webp", type: "image/webp" }],
+      apple: [{ url: "/gamepk.webp" }],
+      shortcut: "/favicon.ico",
     },
     openGraph: {
       type,
@@ -55,9 +73,9 @@ export function createMetadata({
       ...(modifiedTime && { modifiedTime }),
       images: [
         {
-          url: "/gamepk.webp",
-          width: 512,
-          height: 512,
+          url: imageUrl,
+          width: 1200,
+          height: 630,
           alt: imageAlt,
         },
       ],
@@ -66,18 +84,24 @@ export function createMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: ["/gamepk.webp"],
+      images: [imageUrl],
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
+    robots: noIndex
+      ? { index: false, follow: true }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+          },
+        },
+    other: {
+      "geo.region": "PK",
+      "geo.placename": "Pakistan",
     },
   };
 }

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/content/ContentRenderer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui";
-import { CONTACT_EMAIL } from "@/lib/constants";
+import { CONTACT_EMAIL, SITE_URL } from "@/lib/constants";
 import { createMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact GamePK",
@@ -11,9 +14,43 @@ export const metadata: Metadata = createMetadata({
   keywords: ["contact GamePK", "GamePK support", "gamepk.net.pk contact"],
 });
 
+const breadcrumbs = [
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+];
+
 export default function ContactPage() {
   return (
     <Container as="article" className="py-16">
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(breadcrumbs),
+          webPageJsonLd({
+            title: "Contact GamePK",
+            description:
+              "Contact GamePK support for downloads, deposits, withdrawals, and partnerships.",
+            path: "/contact",
+          }),
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact GamePK",
+            url: `${SITE_URL}/contact`,
+            mainEntity: {
+              "@type": "Organization",
+              name: "GamePK",
+              email: CONTACT_EMAIL,
+              url: SITE_URL,
+            },
+          },
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Contact" },
+        ]}
+      />
       <header className="max-w-3xl">
         <h1 className="text-4xl font-bold text-white sm:text-5xl">
           Contact <span className="text-red-400">GamePK</span>

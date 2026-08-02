@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function renderInline(text: string) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return parts.map((part, i) => {
@@ -33,7 +35,7 @@ export function ContentRenderer({ content }: ContentRendererProps) {
           );
         }
 
-        if (block.startsWith("- **")) {
+        if (block.startsWith("- ")) {
           const items = block.split("\n").filter((line) => line.startsWith("- "));
           return (
             <ul key={index} className="list-none space-y-2 pl-0">
@@ -70,8 +72,6 @@ export function ContentRenderer({ content }: ContentRendererProps) {
   );
 }
 
-import Link from "next/link";
-
 interface BreadcrumbsProps {
   items: { label: string; href?: string }[];
 }
@@ -81,7 +81,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
     <nav aria-label="Breadcrumb" className="mb-8">
       <ol className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
         {items.map((item, index) => (
-          <li key={item.label} className="flex items-center gap-2">
+          <li key={`${item.label}-${index}`} className="flex items-center gap-2">
             {index > 0 && <span aria-hidden="true">/</span>}
             {item.href ? (
               <Link href={item.href} className="hover:text-red-400">

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, ButtonLink } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | GamePK",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

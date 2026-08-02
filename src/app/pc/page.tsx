@@ -1,78 +1,151 @@
 import type { Metadata } from "next";
-import { blogs } from "@/content/blogs";
-import { Badge, Card, Container, SectionHeading, ButtonLink } from "@/components/ui";
+import Image from "next/image";
+import Link from "next/link";
+import { Breadcrumbs } from "@/components/content/ContentRenderer";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { ButtonLink, Container } from "@/components/ui";
 import { AnimateIn } from "@/components/ui/AnimateIn";
-import { createMetadata } from "@/lib/metadata";
 import { DOWNLOAD_URL } from "@/lib/constants";
+import { PC_FAQS } from "@/lib/faqs";
+import { createMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "GamePK for PC — Play on Computer",
+  title: "Play GamePK on PC — Windows Emulator Guide",
   description:
-    "Play GamePK on PC via browser or emulator. Same JazzCash deposits, JILI slots, Fortune Gems 3, Money Coming, Happy Fishing and more for Pakistani players.",
+    "How to play GamePK on PC with an Android emulator. Install the official GamePK APK on Windows for a bigger-screen experience in Pakistan.",
   path: "/pc",
-  keywords: ["GamePK PC", "GamePK computer", "GamePK browser", "play GamePK on PC"],
+  keywords: [
+    "GamePK PC",
+    "GamePK Windows",
+    "GamePK emulator",
+    "play GamePK on PC",
+  ],
 });
 
-export default function PCPage() {
-  const featured = blogs.slice(0, 6);
+const breadcrumbs = [
+  { name: "Home", path: "/" },
+  { name: "PC Guide", path: "/pc" },
+];
 
+const steps = [
+  "Download a trusted Android emulator for Windows (BlueStacks, LDPlayer, or similar).",
+  "Install and open the emulator with enough RAM allocated for smooth play.",
+  "Visit gamepk.net.pk/download inside the emulator browser (or transfer the APK).",
+  "Install the official GamePK APK and open the app.",
+  "Register / log in, deposit with JazzCash or Easypaisa if needed, and play.",
+];
+
+export default function PcGuidePage() {
   return (
-    <Container as="main" className="py-16">
-      <AnimateIn>
-        <SectionHeading
-          title="Play GamePK on PC"
-          subtitle="Open GamePK on your computer and enjoy the same hot games — Fortune Gems 3, Money Coming, Happy Fishing, and more."
+    <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(breadcrumbs),
+          webPageJsonLd({
+            title: "Play GamePK on PC — Windows Emulator Guide",
+            description:
+              "Install GamePK on a Windows PC using an Android emulator.",
+            path: "/pc",
+          }),
+          faqJsonLd(PC_FAQS),
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "How to Play GamePK on PC",
+            description:
+              "Install GamePK APK on Windows using an Android emulator.",
+            step: steps.map((text, index) => ({
+              "@type": "HowToStep",
+              position: index + 1,
+              text,
+            })),
+          },
+        ]}
+      />
+
+      <Container as="article" className="py-16">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "PC Guide" },
+          ]}
         />
-      </AnimateIn>
 
-      <AnimateIn delay={80}>
-        <div className="mt-8 max-w-3xl space-y-4 text-zinc-400 leading-relaxed">
-          <p>
-            Similar to other popular Pakistan gaming sites, GamePK works great beyond
-            mobile. Use Chrome or Edge on PC for a bigger screen, easier mouse control,
-            and longer sessions of slots or fishing games.
-          </p>
-          <ul className="space-y-2">
-            <li className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-600" />
-              Deposit &amp; withdraw with JazzCash / Easypaisa
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-600" />
-              Same wallet and VIP rewards as mobile
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-600" />
-              Ideal for JILI slots and fishing games
-            </li>
-          </ul>
-          <div className="pt-2">
-            <ButtonLink href={DOWNLOAD_URL} external className="btn-shimmer">
-              Open GamePK
-            </ButtonLink>
-          </div>
-        </div>
-      </AnimateIn>
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <AnimateIn>
+              <h1 className="text-4xl font-bold text-white sm:text-5xl">
+                Play GamePK on{" "}
+                <span className="text-red-400">PC</span>
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-zinc-400">
+                Prefer a bigger screen? Run the official GamePK Android APK inside a
+                Windows emulator. Same JazzCash &amp; Easypaisa wallet, same hot
+                games — just on desktop.
+              </p>
+            </AnimateIn>
 
-      <AnimateIn>
-        <h2 className="mt-14 text-2xl font-bold text-white">Popular games to try on PC</h2>
-      </AnimateIn>
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featured.map((blog, i) => (
-          <AnimateIn key={blog.slug} delay={i * 60}>
-            <Card href={`/blogs/${blog.slug}`}>
-              <div className="flex items-center gap-2">
-                <Badge variant="accent">{blog.category}</Badge>
-                <span className="text-sm text-zinc-500">★ {blog.rating}</span>
+            <AnimateIn delay={80}>
+              <h2 className="mt-10 text-2xl font-bold text-white">
+                PC setup steps
+              </h2>
+              <ol className="mt-4 list-decimal space-y-3 pl-5 text-zinc-400">
+                {steps.map((step) => (
+                  <li key={step} className="leading-relaxed pl-1">
+                    {step}
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <ButtonLink href="/download" className="btn-shimmer">
+                  Official Download Page
+                </ButtonLink>
+                <ButtonLink href={DOWNLOAD_URL} external variant="secondary">
+                  Get APK Link
+                </ButtonLink>
               </div>
-              <h3 className="mt-3 text-lg font-semibold text-white group-hover:text-red-400 transition-colors">
-                {blog.title}
-              </h3>
-              <p className="mt-2 text-sm text-zinc-400 line-clamp-3">{blog.excerpt}</p>
-            </Card>
+
+              <p className="mt-6 text-sm text-zinc-500">
+                Related:{" "}
+                <Link href="/download" className="text-red-400 hover:text-red-300">
+                  APK download
+                </Link>
+                {" · "}
+                <Link href="/deposit" className="text-red-400 hover:text-red-300">
+                  Deposit
+                </Link>
+                {" · "}
+                <Link href="/blogs" className="text-red-400 hover:text-red-300">
+                  Blogs
+                </Link>
+              </p>
+            </AnimateIn>
+          </div>
+
+          <AnimateIn delay={120}>
+            <div className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50">
+              <Image
+                src="/gamepk-login.webp"
+                alt="GamePK login screen suitable for PC emulator play"
+                width={900}
+                height={1600}
+                sizes="(max-width: 1024px) 90vw, 420px"
+                className="h-auto w-full object-contain"
+                priority
+              />
+            </div>
           </AnimateIn>
-        ))}
-      </div>
-    </Container>
+        </div>
+      </Container>
+
+      <FaqSection
+        faqs={PC_FAQS}
+        title="PC Play FAQs"
+        subtitle="Answers for Pakistani players running GamePK on Windows."
+      />
+    </>
   );
 }
