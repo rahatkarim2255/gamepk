@@ -46,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.85,
-      images: blogs.slice(0, 3).map((blog) => `${SITE_URL}${blog.image}`),
+      images: [`${SITE_URL}/gamepk.webp`],
     },
     {
       url: `${SITE_URL}/about`,
@@ -80,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(blog.updatedAt),
     changeFrequency: "weekly" as const,
     priority: 0.8,
-    images: [`${SITE_URL}${blog.image}`],
+    images: [`${SITE_URL}/gamepk.webp`],
   }));
 
   return [...staticPages, ...blogPages];

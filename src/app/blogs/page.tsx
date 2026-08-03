@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/content/ContentRenderer";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -134,34 +133,23 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((blog, i) => (
             <AnimateIn key={blog.slug} delay={i * 50}>
-              <Card href={`/blogs/${blog.slug}`} padded={false} className="h-full overflow-hidden">
-                <div className="relative aspect-video overflow-hidden bg-zinc-950">
-                  <Image
-                    src={blog.image}
-                    alt={blog.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+              <Card href={`/blogs/${blog.slug}`} padded className="h-full">
+                <div className="flex items-center gap-2">
+                  <Badge variant="accent">{blog.category}</Badge>
+                  <span className="text-sm text-zinc-500">★ {blog.rating}</span>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="accent">{blog.category}</Badge>
-                    <span className="text-sm text-zinc-500">★ {blog.rating}</span>
-                  </div>
-                  <h2 className="mt-3 text-lg font-semibold text-white transition-colors group-hover:text-red-400">
-                    {blog.title}
-                  </h2>
-                  <p className="mt-2 text-sm text-zinc-400 line-clamp-2">
-                    {blog.excerpt}
-                  </p>
-                  <time
-                    dateTime={blog.updatedAt}
-                    className="mt-4 block text-xs text-zinc-500"
-                  >
-                    Updated {blog.updatedAt}
-                  </time>
-                </div>
+                <h2 className="mt-3 text-lg font-semibold text-white transition-colors group-hover:text-red-400">
+                  {blog.title}
+                </h2>
+                <p className="mt-2 text-sm text-zinc-400 line-clamp-2">
+                  {blog.excerpt}
+                </p>
+                <time
+                  dateTime={blog.updatedAt}
+                  className="mt-4 block text-xs text-zinc-500"
+                >
+                  Updated {blog.updatedAt}
+                </time>
               </Card>
             </AnimateIn>
           ))}

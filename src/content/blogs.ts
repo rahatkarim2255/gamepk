@@ -13,8 +13,6 @@ export const blogs: BlogPost[] = [
     publishedAt: "2026-06-01",
     updatedAt: "2026-08-01",
     tags: ["Fortune Gems 3", "JILI", "Slots", "GamePK"],
-    image: "/blogs/fortune-gems-3.webp",
-    imageAlt: "Fortune Gems 3 slot game on GamePK",
     content: `Fortune Gems 3 is a standout JILI slot on GamePK, known for its golden temple vibe, gem symbols, and exciting bonus rounds. Pakistani players love it for short sessions and clear visuals on mobile.
 
 ## Why Fortune Gems 3 Is Popular on GamePK
@@ -53,8 +51,6 @@ Stay on GamePK for more JILI slot guides updated for Pakistani players.`,
     publishedAt: "2026-06-05",
     updatedAt: "2026-08-01",
     tags: ["Money Coming", "JILI", "Hot Games", "Slots"],
-    image: "/blogs/money-coming.webp",
-    imageAlt: "Money Coming hot slot on GamePK",
     content: `Money Coming is marked as a **HOT** game on GamePK for a reason. The green cash theme, $100 stacks, and quick spins make it a favorite among Pakistani players browsing Popular and JILI slots.
 
 ## What Makes Money Coming Hot
@@ -89,8 +85,6 @@ Check GamePK blogs regularly for more HOT JILI titles and updates.`,
     publishedAt: "2026-06-10",
     updatedAt: "2026-08-01",
     tags: ["FlyX Cash Turbo", "Hot Games", "GamePK", "Arcade"],
-    image: "/blogs/flyx-cash-turbo.webp",
-    imageAlt: "FlyX Cash Turbo game on GamePK",
     content: `FlyX Cash Turbo stands out on the GamePK home grid with purple lightning, rocket-style art, and a turbo feel. If you like games that move fast, this one fits right next to other Hot titles.
 
 ## Game Style
@@ -122,8 +116,6 @@ GamePK continues to feature turbo and arcade-style games for Pakistani players w
     publishedAt: "2026-06-12",
     updatedAt: "2026-08-01",
     tags: ["Happy Fishing", "Fishing", "GamePK", "Arcade"],
-    image: "/blogs/happy-fishing.webp",
-    imageAlt: "Happy Fishing game on GamePK",
     content: `Happy Fishing is a colorful fishing title on GamePK featuring a blue shark, treasure chests, and underwater targets. It sits in the Fishing category alongside other skill-and-luck hybrid games.
 
 ## How Fishing Games Work on GamePK
@@ -155,8 +147,6 @@ GamePK is a great home for fishing titles popular with Pakistani mobile players.
     publishedAt: "2026-06-15",
     updatedAt: "2026-08-01",
     tags: ["Genie's 3 Wishes", "JILI", "Slots", "GamePK"],
-    image: "/blogs/genies-3-wishes.webp",
-    imageAlt: "Genie's 3 Wishes slot on GamePK",
     content: `Genie's 3 Wishes is a fan-favorite JILI slot on GamePK. The purple genie, golden lamp, and Arabian Nights style make it easy to spot in the Popular and JILI Slot sections.
 
 ## Theme & Feel
@@ -188,8 +178,6 @@ Follow GamePK blogs for more magical and gem-themed JILI guides.`,
     publishedAt: "2026-06-18",
     updatedAt: "2026-08-01",
     tags: ["Fortune Garuda 500", "JILI", "Slots", "GamePK"],
-    image: "/blogs/fortune-garuda-500.webp",
-    imageAlt: "Fortune Garuda 500 slot on GamePK",
     content: `Fortune Garuda 500 brings a mythic golden bird theme to GamePK. The Garuda statue art stands out in the lobby grid and attracts players who like high-energy gold-themed slots.
 
 ## About the Game
@@ -217,8 +205,6 @@ Download GamePK to try Fortune Garuda 500 and other fortune-themed titles.`,
     publishedAt: "2026-06-20",
     updatedAt: "2026-08-01",
     tags: ["Super Ace", "Slots", "Card Games", "GamePK"],
-    image: "/blogs/super-ace.webp",
-    imageAlt: "Super Ace card slot on GamePK",
     content: `Super Ace is easy to recognize on GamePK thanks to its joker crown icon and card-game flavor. It bridges classic card vibes with slot-style spinning.
 
 ## Why Players Like Super Ace
@@ -249,8 +235,6 @@ Find **Super Ace** under Popular games on GamePK and spin when you're ready.`,
     publishedAt: "2026-06-22",
     updatedAt: "2026-08-01",
     tags: ["Fortune Coins", "Slots", "Popular", "GamePK"],
-    image: "/blogs/fortune-coins.webp",
-    imageAlt: "Fortune Coins slot game on GamePK",
     content: `Fortune Coins keeps things classic: piles of gold coins, a crown emblem, and straightforward slot action. It's a strong fit for players who like simple, shiny themes on GamePK.
 
 ## Game Overview

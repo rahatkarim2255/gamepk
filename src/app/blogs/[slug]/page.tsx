@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -42,8 +41,8 @@ export async function generateMetadata({
     type: "article",
     publishedTime: blog.publishedAt,
     modifiedTime: blog.updatedAt,
-    image: blog.image,
-    imageAlt: blog.imageAlt,
+    image: "/gamepk.webp",
+    imageAlt: "GamePK",
   });
 }
 
@@ -79,8 +78,8 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
             publishedAt: blog.publishedAt,
             updatedAt: blog.updatedAt,
             author: SITE_NAME,
-            image: blog.image,
-            imageAlt: blog.imageAlt,
+            image: "/gamepk.webp",
+            imageAlt: "GamePK",
             rating: blog.rating,
           }),
         ]}
@@ -126,21 +125,6 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
         </AnimateIn>
 
         <AnimateIn delay={80}>
-          <figure className="relative mx-auto mt-10 aspect-video max-w-3xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
-            <Image
-              src={blog.image}
-              alt={blog.imageAlt}
-              title={blog.imageAlt}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 768px"
-              className="object-cover"
-            />
-            <figcaption className="sr-only">{blog.imageAlt}</figcaption>
-          </figure>
-        </AnimateIn>
-
-        <AnimateIn delay={120}>
           <div className="mx-auto mt-10 max-w-3xl">
             <ContentRenderer content={blog.content} />
 

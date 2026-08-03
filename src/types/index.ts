@@ -9,6 +9,4 @@ export interface BlogPost {
   updatedAt: string;
   tags: string[];
   content: string;
-  image: string;
-  imageAlt: string;
 }
